@@ -1,0 +1,59 @@
+﻿@model ML.Restaurante
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+
+<container>
+	<div class="row">
+		<div class="col">
+			<div class="row">
+				<div class="col">
+					@using (Html.BeginForm("Form", "Restaurante", FormMethod.Post, new { enctype = "multipart/form-data" }))
+					{
+						<div class="row">
+							<div class="col" hidden>
+								@Html.TextBoxFor(model => model.IdRestaurante);
+							</div>
+							<div class="col">
+								@Html.LabelFor(model => model.Nombre, new { @class = "label-form" })
+								@Html.TextBoxFor(model => model.Nombre, new { @class = "form-control" })
+							</div>
+							<div class="col">
+								@Html.LabelFor(model => model.Slogan, new { @class = "label-form" })
+								@Html.TextBoxFor(model => model.Slogan, new { @class = "form-control" })
+							</div>
+							<div class="col">
+								@Html.LabelFor(model => model.Descripcion, new { @class = "label-form" })
+								@Html.TextBoxFor(model => model.Descripcion, new { @class = "form-control" })
+							</div>
+						</div>
+						<div class="row" style="padding-top:20px">
+							<div class="col-1">
+								@if (Model.Imagen != null)
+								{
+									<img class="img-thumbnail" src="data:image/*;base64,@Convert.ToBase64String(Model.Imagen)" style="width:100px" />
+								}
+								else
+								{
+									<img class="img-thumbnail" src="~/css/Imagenes/defaultuser.png" style="width:100px" />
+								}
+							</div>
+							<div class="col-6">
+								<input  type="file" class="form-control" name="img"/>
+							</div>
+							
+						</div>
+						<div class="row" style="padding-top:20px">
+							<div class="col">
+								<input  class="btn btn-outline-success" type="submit" value="Agregar"/>
+							</div>
+						</div>
+					}
+				</div>
+			</div>
+		</div>
+	</div>
+</container>

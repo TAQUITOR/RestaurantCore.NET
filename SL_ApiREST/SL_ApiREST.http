@@ -1,0 +1,6 @@
+@SL_ApiREST_HostAddress = http://localhost:5037
+
+GET {{SL_ApiREST_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
