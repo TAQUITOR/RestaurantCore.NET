@@ -1,3 +1,6 @@
+using DL;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -6,6 +9,19 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+
+var connectionString =
+ builder.Configuration.GetConnectionString("RESTAURANTEDBCORE")
+     ?? throw new InvalidOperationException("Connection string"
+     + "'DefaultConnection' not found.");
+
+builder.Services.AddDbContext<RestaurantedbcoreContext>(options =>
+options.UseSqlServer(connectionString));
+
+
+builder.Services.AddScoped<BL.Restaurante>();
+
 
 var app = builder.Build();
 
