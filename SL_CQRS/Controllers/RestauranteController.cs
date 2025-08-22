@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using SL_CQRS.CQRS.Restaurante.Commands.Add;
 using SL_CQRS.CQRS.Restaurante.Queries.GetAll;
 
 namespace SL_CQRS.Controllers
@@ -20,6 +21,22 @@ namespace SL_CQRS.Controllers
 
             ML.Result result = await _mediator.Send(new GetAllRestauranteQuery());
             if (result.Correct) {
+                return Ok(result);
+            }
+            else {
+                return BadRequest(result);
+            }
+
+        }
+
+        [HttpPost]
+        [Route("Add")]
+        public async Task<IActionResult> AddRestaurante([FromBody] AddRestauranteCommand restaurante) 
+        {
+
+            ML.Result result = await _mediator.Send(restaurante);
+            if (result.Correct)
+            {
                 return Ok(result);
             }
             else {
