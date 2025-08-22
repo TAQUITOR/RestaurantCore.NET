@@ -1,5 +1,9 @@
 using DL;
+using FluentValidation;
 using Microsoft.EntityFrameworkCore;
+using SL_CQRS.CQRS.Restaurante.Commands.Add;
+using FluentValidation.AspNetCore;
+using SL_CQRS.CQRS.Restaurante.Queries.GetAll;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,6 +25,18 @@ options.UseSqlServer(connectionString));
 
 
 builder.Services.AddScoped<BL.Restaurante>();
+
+//Mediator handler
+builder.Services.AddMediatR(cfg =>
+    cfg.RegisterServicesFromAssembly(typeof(GetAllRestauranteQuery).Assembly));
+
+// Registro de validadores automáticamente
+builder.Services.AddValidatorsFromAssemblyContaining<AddRestauranteCommand>();
+
+// Activa la validación automática
+builder.Services.AddFluentValidationAutoValidation();
+builder.Services.AddFluentValidationClientsideAdapters();
+
 
 
 var app = builder.Build();

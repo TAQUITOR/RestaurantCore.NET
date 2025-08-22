@@ -1,6 +1,12 @@
-﻿namespace SL_CQRS.CQRS.Restaurante.Commands.Add
+﻿
+using MediatR;
+
+
+namespace SL_CQRS.CQRS.Restaurante.Commands.Add
 {
-    public class AddRestauranteCommand
+    public class AddRestauranteCommand : IRequest<ML.Result>
     {
+
+
     }
 }

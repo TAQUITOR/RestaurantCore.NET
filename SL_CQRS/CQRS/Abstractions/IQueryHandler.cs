@@ -1,6 +1,9 @@
 ﻿namespace SL_CQRS.CQRS.Abstractions
 {
-    public class IQueryHandler
+    public interface IQueryHandler<TQuery, TResult>
     {
+
+        TResult Handle(TQuery query);
+
     }
 }

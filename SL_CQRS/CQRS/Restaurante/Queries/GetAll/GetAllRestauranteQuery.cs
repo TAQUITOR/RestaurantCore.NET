@@ -1,6 +1,9 @@
-﻿namespace SL_CQRS.CQRS.Restaurante.Queries.GetAll
+﻿using MediatR;
+
+namespace SL_CQRS.CQRS.Restaurante.Queries.GetAll
 {
-    public class GetAllRestauranteQuery
+    public class GetAllRestauranteQuery : IRequest<ML.Result>
     {
+
     }
 }
